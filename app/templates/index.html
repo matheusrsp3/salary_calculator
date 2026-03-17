@@ -3,68 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/style.css">
-    <title>Home Page</title>
+    <title>Calculadora de Salário</title>
+    <script src="../static/js/cleave.min.js"></script>
 </head>
 <body>
-
-
     <div class="form-container">
-        <h2>Forms</h2>
-        
-        <form action="/sum" method="POST">
-            
+        <h2>Calculadora de Salário</h2>
+        <form id="input-form" action="/calculate" method="POST" target="_blank">
             <div class="form-group">
-                <label for="base_salary_1">Number 1:</label>
-                <input type="number" id="nome" name="base_salary_1" placeholder="Number 1" required>
+                <label for="base_salary">Salário Base:</label>
+                <input type="text" inputmode="numeric" id="base_salary" name="base_salary" placeholder="BRL 100,00" required>
             </div>
-
             <div class="form-group">
-                <label for="base_salary_2">Number 2:</label>
-                <input type="number" id="nome" name="base_salary_2" placeholder="Number 2" required>
-            </div>
-
-            <!-- <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
-            </div>
-
-            <div class="form-group">
-                <label for="assunto">Assunto:</label>
-                <select id="assunto" name="assunto" required>
-                    <option value="" disabled selected>Escolha uma opção</option>
-                    <option value="duvida">Dúvida</option>
-                    <option value="suporte">Suporte Técnico</option>
-                    <option value="sugestao">Sugestão</option>
-                </select>
-            </div> -->
-
-            <!-- <div class="form-group">
-                <label>Preferência de Contato:</label>
+                <label>Porcentagem de Adiantamento:</label>
                 <div class="radio-group">
-                    <input type="radio" id="contato_email" name="preferencia" value="email" checked>
-                    <label for="contato_email">E-mail</label>
+                    <input type="radio" id="percentage_30" name="percentage_advance" value="30" checked>
+                    <label for="percentage_30">30%</label>
                     
-                    <input type="radio" id="contato_telefone" name="preferencia" value="telefone">
-                    <label for="contato_telefone">Telefone</label>
+                    <input type="radio" id="percentage_40" name="percentage_advance" value="40">
+                    <label for="percentage_40">40%</label>
+
+                    <input type="radio" id="percentage_50" name="percentage_advance" value="50">
+                    <label for="percentage_50">50%</label>
                 </div>
-            </div> -->
-
-            <!-- <div class="form-group">
-                <label for="mensagem">Mensagem:</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
             </div>
-
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="termos" name="termos" required>
-                <label for="termos">Concordo com os termos e condições.</label>
-            </div> -->
-
-            <button type="submit">Calculate</button>
-
+            <button type="submit">Calcular</button>
         </form>
     </div>
+    <script>
+        const baseSalaryInput = document.getElementById('base_salary');
 
-
+        const cleaveCurrency = new Cleave(baseSalaryInput, {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand',
+            numeralDecimalMark: ',', 
+            delimiter: '.',          
+            rawValueTrimPrefix: true 
+        });
+    </script>
 </body>
 </html>
