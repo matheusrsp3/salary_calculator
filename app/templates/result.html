@@ -12,8 +12,16 @@
         <h2>Resultado</h2>
         <form action="#" method="GET">
             <div class="form-group">
-                <label>Adiantamento Salarial:</label>
+                <label>Adiantamento salarial:</label>
                 <input type="text" value="{{ formatted_advance_payment }}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Salário hora:</label>
+                <input type="text" value="{{ formatted_payment_by_hour }}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Saláro minuto:</label>
+                <input type="text" value="{{ formatted_payment_by_minute }}" disabled>
             </div>
         </form>
     </div>
