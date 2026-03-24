@@ -11,43 +11,61 @@
 <body>
     <div class="form-container">
         <h2>Calculadora de Salário</h2>
+
+        <div class="tabs">
+            <button type="button" class="tab-btn active" onclick="openTab(event, 'earnings')">Proventos</button>
+            <button type="button" class="tab-btn" onclick="openTab(event, 'discounts')">Descontos</button>
+            <button type="button" class="tab-btn" onclick="openTab(event, 'calculation_base')">Base de Cálculo</button>
+        </div>
+
         <form id="input-form" action="/calculate" method="POST" target="_blank">
-            <div class="form-group">
-                <label for="base_salary">Salário base:</label>
-                <input type="text" inputmode="numeric" id="base_salary" name="base_salary" placeholder="BRL 100,00" required>
-            </div>
-            <div class="form-group">
-                <label>Porcentagem de adiantamento:</label>
-                <div class="radio-group">
-                    <input type="radio" id="percentage_30" name="percentage_advance" value="30" checked>
-                    <label for="percentage_30">30%</label>
-                    
-                    <input type="radio" id="percentage_40" name="percentage_advance" value="40">
-                    <label for="percentage_40">40%</label>
-
-                    <input type="radio" id="percentage_50" name="percentage_advance" value="50">
-                    <label for="percentage_50">50%</label>
+            
+            <div id="earnings" class="tab-content active">
+                <div class="form-group">
+                    <label for="base_salary">Salário base:</label>
+                    <input type="text" inputmode="numeric" id="base_salary" name="base_salary" placeholder="BRL 100,00" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Horas trabalhadas (hora/divisor):</label>
-                <div class="radio-group">
-                    <input type="radio" id="hours_36" name="hours_worked_per_week" value="36" checked>
-                    <label for="hours_36">36/180</label>
-                    
-                    <input type="radio" id="hours_40" name="hours_worked_per_week" value="40">
-                    <label for="hours_40">40/200</label>
 
-                    <input type="radio" id="hours_44" name="hours_worked_per_week" value="44">
-                    <label for="hours_44">44/220</label>
+            <div id="discounts" class="tab-content">
+
+            </div>
+
+            <div id="calculation_base" class="tab-content">
+                <div class="form-group">
+                    <label>Porcentagem de adiantamento:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="percentage_30" name="percentage_advance" value="30" checked>
+                        <label for="percentage_30">30%</label>
+                        
+                        <input type="radio" id="percentage_40" name="percentage_advance" value="40">
+                        <label for="percentage_40">40%</label>
+
+                        <input type="radio" id="percentage_50" name="percentage_advance" value="50">
+                        <label for="percentage_50">50%</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Horas trabalhadas (hora/divisor):</label>
+                    <div class="radio-group">
+                        <input type="radio" id="hours_36" name="hours_worked_per_week" value="36" checked>
+                        <label for="hours_36">36/180</label>
+                        
+                        <input type="radio" id="hours_40" name="hours_worked_per_week" value="40">
+                        <label for="hours_40">40/200</label>
+
+                        <input type="radio" id="hours_44" name="hours_worked_per_week" value="44">
+                        <label for="hours_44">44/220</label>
+                    </div>
                 </div>
             </div>
-            <button type="submit">Calcular</button>
+
+            <button type="submit" class="submit-btn">Calcular</button>
         </form>
     </div>
+
     <script>
         const baseSalaryInput = document.getElementById('base_salary');
-
         const cleaveCurrency = new Cleave(baseSalaryInput, {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand',
@@ -55,6 +73,21 @@
             delimiter: '.',          
             rawValueTrimPrefix: true 
         });
+
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
     </script>
 </body>
 </html>

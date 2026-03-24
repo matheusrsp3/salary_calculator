@@ -52,7 +52,8 @@ textarea {
     font-weight: normal;
     margin-bottom: 0;
 }
-button {
+
+.submit-btn {
     width: 100%;
     padding: 10px;
     background-color: #28a745;
@@ -62,7 +63,52 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 15px; 
 }
-button:hover {
+.submit-btn:hover {
     background-color: #218838;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-btn {
+    background-color: transparent;
+    border: none;
+    color: #666;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    margin-bottom: -2px; 
+}
+
+.tab-btn:hover {
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.tab-btn.active {
+    color: #28a745; 
+    border-bottom: 3px solid #28a745;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
